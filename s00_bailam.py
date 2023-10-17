@@ -49,6 +49,31 @@ greeting('2100')             | Good evening!          | 14
 #endregion debai
 
 #region bailam
+def get_24hformat_hour(hour_str):
+
+  hour_str = ''.join(filter(str.isdigit, hour_str)).lower().strip()
+
+  if 'am' in hour_str:
+      hour_str = hour_str.replace('am', '').strip()
+      if hour_str == '12':
+          return 0
+      return int(hour_str)
+  elif 'pm' in hour_str:
+      hour_str = hour_str.replace('pm', '').strip()
+      if hour_str == '12':
+        return 12
+      return int(hour_str) + 12
+  else:
+      return int(hour_str)
+  return int(hour_str)
+
 def greeting(hour_str):
-  return 'todo'
+  hour = get_24hformat_hour(hour_str)
+
+  if 0 <= hour < 12:
+      return "Good morning!"
+  elif 12 <= hour < 18:
+      return "Good afternoon!"
+  else:
+      return "Good evening!"
 #endregion bailam
